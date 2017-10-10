@@ -1,0 +1,43 @@
+INSERT INTO users VALUES('mx98','sdfwfdxdfwsvxc', 400);
+INSERT INTO users VALUES('cyuan79', 'sfwjfnvdsvneiv', 500);
+INSERT INTO users VALUES('Wanqing1034', 'fjrjvidgdxvn', 500);
+INSERT INTO users VALUES('Xiaoman856','xkismimvo', 500);
+INSERT INTO users VALUES('loveCandy123', 'vdcnvrjv', 500);
+INSERT INTO users VALUES('lodaed34', 'fsjfnisvjxcnve', 500);
+INSERT INTO users VALUES('happy293', 'cfsoxnsvcxv', 500);
+INSERT INTO users VALUES('Kelvin98', 'sfsxvfxv', 500);
+INSERT INTO users VALUES('Chunhui12', 'sfjsiovrtfg', 500);
+INSERT INTO users VALUES('Celiahuuuu', 'vxnjfkvvrk', 500);
+ 
+INSERT INTO pets VALUES('19583049', 'maggie', 'Dog', 'mx98');
+INSERT INTO pets VALUES('23939204', 'max', 'Cat', 'cyuan79');
+INSERT INTO pets VALUES('29032947', 'cola', 'Dog', 'Xiaoman856');
+INSERT INTO pets VALUES('39472945', 'cheese', 'Rabbit', 'Wanqing1034');
+INSERT INTO pets VALUES('94759385', 'candy', 'Cat', 'loveCandy123');
+INSERT INTO pets VALUES('92849389', 'soda', 'Dog', 'lodaed34');
+INSERT INTO pets VALUES('39474802', 'LeLe', 'Turtle', 'happy293');
+INSERT INTO pets VALUES('93498204', 'KD', 'Dog', 'Kelvin98');
+INSERT INTO pets VALUES('23947394', 'CC', 'Cat', 'Chunhui12');
+INSERT INTO pets VALUES('28375859', 'doggie', 'Dog', 'Celiahuuuu');
+
+
+INSERT INTO availability VALUES ('cyuan79', 'Dog', '2017-04-23', '2017-04-30', 1);
+INSERT INTO availability VALUES ('cyuan79', 'Cat', '2017-08-01', '2017-08-07', 2);
+INSERT INTO availability VALUES ('Kelvin98', 'Rabbit', '2017-10-13', '2017-10-14', 3);
+INSERT INTO availability VALUES ('Celiahuuuu', 'Dog', '2017-01-01', '2017-10-01', 4);
+INSERT INTO availability VALUES ('Chunhui12', 'Turtle', '2017-06-30', '2017-08-31', 5);
+INSERT INTO availability VALUES ('happy293', 'Cat', '2017-03-23','2017-04-23', 6);
+INSERT INTO availability VALUES ('mx98', 'Tiger', '2017-04-21', '2017-04-24', 7);
+INSERT INTO availability VALUES ('Wanqing1034', 'Elephant', '2017-03-21', '2017-03-23', 8);
+INSERT INTO availability VALUES ('loveCandy123', 'Mouse', '2017-02-23', '2017-02-24', 9);
+INSERT INTO availability VALUES ('Xiaoman856', 'Giraffe', '2017-01-05', '2017-01-06', 10);
+INSERT INTO availability VALUES ('cyuan79', 'Dog', '2017-06-23', '2017-06-30', 11);
+INSERT INTO availability VALUES ('cyuan79', 'Cat', '2017-06-23', '2017-06-30', 12);
+INSERT INTO availability VALUES ('Kelvin98', 'Rabbit', '2017-11-13', '2017-11-14', 13);
+INSERT INTO availability VALUES ('Celiahuuuu', 'Dog', '2017-01-01', '2017-10-01', 14);
+INSERT INTO availability VALUES (¡®cyuan79¡¯, ¡®Dog¡¯, '2017-08-10', '2017-08-25', 15);
+INSERT INTO availability VALUES ('happy293', 'Cat', '2017-03-23','2017-04-23', 16);
+INSERT INTO availability VALUES ('mx98', 'Tiger', '2017-04-21', '2017-04-24', 17);
+INSERT INTO availability VALUES ('Wanqing1034', 'Elephant', '2017-03-21', '2017-03-23', 18);
+INSERT INTO availability VALUES ('loveCandy123', 'Mouse', '2017-03-21', '2017-03-24', 19);
+INSERT INTO availability VALUES ('Xiaoman856', 'Giraffe', '2017-08-05', '2017-08-20', 20);
