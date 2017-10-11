@@ -23,7 +23,7 @@ CREATE TABLE bid (
   bid VARCHAR(64) REFERENCES users(uid),
   aid VARCHAR(64) REFERENCES availability(aid),
   pid VARCHAR(64) REFERENCES pets(pid),
-  status VARCHAR(64) CHECK (status IN (¡®successful¡¯, ¡®failed¡¯, ¡®pending¡¯)),
+  status VARCHAR(64) CHECK (status IN ('successful', 'failed', 'pending')),
   points INTEGER NOT NULL,
   PRIMARY KEY (bid, aid, pid)
 );

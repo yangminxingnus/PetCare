@@ -20,7 +20,6 @@ INSERT INTO pets VALUES('93498204', 'KD', 'Dog', 'Kelvin98');
 INSERT INTO pets VALUES('23947394', 'CC', 'Cat', 'Chunhui12');
 INSERT INTO pets VALUES('28375859', 'doggie', 'Dog', 'Celiahuuuu');
 
-
 INSERT INTO availability VALUES ('cyuan79', 'Dog', '2017-04-23', '2017-04-30', 1);
 INSERT INTO availability VALUES ('cyuan79', 'Cat', '2017-08-01', '2017-08-07', 2);
 INSERT INTO availability VALUES ('Kelvin98', 'Rabbit', '2017-10-13', '2017-10-14', 3);
@@ -35,9 +34,16 @@ INSERT INTO availability VALUES ('cyuan79', 'Dog', '2017-06-23', '2017-06-30', 1
 INSERT INTO availability VALUES ('cyuan79', 'Cat', '2017-06-23', '2017-06-30', 12);
 INSERT INTO availability VALUES ('Kelvin98', 'Rabbit', '2017-11-13', '2017-11-14', 13);
 INSERT INTO availability VALUES ('Celiahuuuu', 'Dog', '2017-01-01', '2017-10-01', 14);
-INSERT INTO availability VALUES (¡®cyuan79¡¯, ¡®Dog¡¯, '2017-08-10', '2017-08-25', 15);
+INSERT INTO availability VALUES ('cyuan79', 'Dog', '2017-08-10', '2017-08-25', 15);
 INSERT INTO availability VALUES ('happy293', 'Cat', '2017-03-23','2017-04-23', 16);
 INSERT INTO availability VALUES ('mx98', 'Tiger', '2017-04-21', '2017-04-24', 17);
 INSERT INTO availability VALUES ('Wanqing1034', 'Elephant', '2017-03-21', '2017-03-23', 18);
 INSERT INTO availability VALUES ('loveCandy123', 'Mouse', '2017-03-21', '2017-03-24', 19);
 INSERT INTO availability VALUES ('Xiaoman856', 'Giraffe', '2017-08-05', '2017-08-20', 20);
+
+INSERT INTO bid VALUES('Kelvin98', '4', '93498204', 'pending' , '100');
+INSERT INTO bid VALUES('Celiahuuuu', '11', '28375859', 'pending' , '120');
+INSERT INTO bid VALUES('loveCandy123', '12', '94759385', 'pending' , '110');
+INSERT INTO bid VALUES('mx98', '14', '19583049', 'pending' , '110');
+INSERT INTO bid VALUES('Chunhui12', '16', '23947394', 'pending' , '100');
+INSERT INTO bid VALUES('Xiaoman856', '2', '29032947', 'pending' , '120');
