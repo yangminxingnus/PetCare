@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset = "UTF-8">
-<title>Blog</title>
+<title>PetCare</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
