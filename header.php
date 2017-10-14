@@ -17,9 +17,10 @@
 	<nav>
 		<ul>
 			<li><a href="index.php">HOME</a></li>
-
 			<?php
-			if($_SESSION['uid'] == 'admin'){
+			if($_SESSION['uid'] == 'admin'){?>
+				<li><a href="admin.php">MANAGE</a></li>
+			<?php
 				echo "<form action='".logout()."' method='POST'>
 				<button type='submit' name='logoutSubmit' class='btn btn-warning btn-xs'>LOG OUT</button>
 			</form>"; 
