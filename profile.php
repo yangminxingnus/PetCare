@@ -17,8 +17,7 @@
 	require_once("dbh.inc.php");
     include 'header.php';
 
-    $db = pg_connect("host=localhost port=5432 dbname=Project1 user=postgres password=")
-    $result = pg_query($db, "SELECT * FROM pets WHERE oid = uid")
+    $result = pg_query($conn, "SELECT * FROM pets WHERE oid = $_SESSION['uid']")
     while ($row = pg_fetch_row($result)) {
     	echo "<ul><form name='update' action = 'profile.php' method = 'POST'
     	<li>Pet ID:</li>
@@ -27,12 +26,13 @@
     	<li><input type = 'text' name = 'pet_name_updated' value = '$row[pname]' /></li>
     	<li>Pet type:</li>
     	<li><input type = 'text' name = 'pet_type_updated' value = '$row[ptype]' /></li>
+    	<li><input type = 'submit' name = 'new' /></li>;
     	</form>
     	</ul>";
     }
-    echo "<li><input type = 'submit' name = 'new' /></li>";
+    
     if (isset($_POST['new'])) {
-    	$result = pg_query($db, "UPDATE pet SET book_id)
+    	$result = pg_query($conn, "UPDATE pet SET book_id)
     }
 ?>
 
