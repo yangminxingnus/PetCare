@@ -16,12 +16,12 @@ CREATE TABLE availability (
 	ptype VARCHAR(64) NOT NULL,
 	afrom DATE NOT NULL,
 	ato DATE NOT NULL,
-	aid VARCHAR(64) PRIMARY KEY
+	aid SERIAL PRIMARY KEY
 );
 
 CREATE TABLE bid (
   bid VARCHAR(64) REFERENCES users(uid),
-  aid VARCHAR(64) REFERENCES availability(aid),
+  aid INT REFERENCES availability(aid),
   pid VARCHAR(64) REFERENCES pets(pid),
   status VARCHAR(64) CHECK (status IN ('successful', 'failed', 'pending')),
   points INTEGER NOT NULL,

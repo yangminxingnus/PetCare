@@ -15,10 +15,6 @@ echo"
         <input type='password' name='pwd' class='form-control' placeholder='Password' required>
         <button class='btn btn-lg btn-warning btn-block' type='submit' name='signupSubmit'>SIGN UP</button>
       </form>
-
 </div>"; 
 
 ?>
-
-</body>
-</html>

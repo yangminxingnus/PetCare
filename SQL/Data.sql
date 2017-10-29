@@ -41,9 +41,9 @@ INSERT INTO availability VALUES ('Wanqing1034', 'Elephant', '2017-03-21', '2017-
 INSERT INTO availability VALUES ('loveCandy123', 'Mouse', '2017-03-21', '2017-03-24', 19);
 INSERT INTO availability VALUES ('Xiaoman856', 'Giraffe', '2017-08-05', '2017-08-20', 20);
 
-INSERT INTO bid VALUES('Kelvin98', '4', '93498204', 'pending' , '100');
-INSERT INTO bid VALUES('Celiahuuuu', '11', '28375859', 'pending' , '120');
-INSERT INTO bid VALUES('loveCandy123', '12', '94759385', 'pending' , '110');
-INSERT INTO bid VALUES('mx98', '14', '19583049', 'pending' , '110');
-INSERT INTO bid VALUES('Chunhui12', '16', '23947394', 'pending' , '100');
-INSERT INTO bid VALUES('Xiaoman856', '2', '29032947', 'pending' , '120');
+INSERT INTO bid VALUES('Kelvin98', 4, '93498204', 'pending' , '100');
+INSERT INTO bid VALUES('Celiahuuuu', 11, '28375859', 'pending' , '120');
+INSERT INTO bid VALUES('loveCandy123', 12, '94759385', 'pending' , '110');
+INSERT INTO bid VALUES('mx98', 14, '19583049', 'pending' , '110');
+INSERT INTO bid VALUES('Chunhui12', 16, '23947394', 'pending' , '100');
+INSERT INTO bid VALUES('Xiaoman856', 2, '29032947', 'pending' , '120');
