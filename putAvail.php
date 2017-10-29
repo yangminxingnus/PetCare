@@ -2,7 +2,6 @@
 	date_default_timezone_set('Asia/Singapore');
 	require_once("dbh.inc.php");
 	require_once("text.inc.php");
-	require_once("editAvail.php");
     include 'header.php';
     session_start();
 ?>
@@ -61,12 +60,12 @@ function getAvail($conn){
 				<input type='hidden' name='aid' value='".$row['aid']."'>
 				<button type=submit name = 'AvailDelete' class='btn btn-warning btn-xs'>DELETE</button>
 			</form>
-			<form class='edit-form' method='POST' action='editAvail.php'>
+			<form class='edit-form' method='POST' action='".update($conn)."'>
 				<input type='hidden' name='aid' value='".$row['aid']."'>
-				<input type='hidden' name='ptype' value='".$row['ptype']."'>
-				<input type='hidden' name='afrom' value='".$row['afrom']."'>
-				<input type='hidden' name='ato' value='".$row['ato']."'>
-				<button class='btn btn-warning btn-xs'>EDIT</button>
+				<input type='text' name='ptype' value='".$row['ptype']."'>
+				<input type='date' name='afrom' value='".$row['afrom']."'>
+				<input type='date' name='ato' value='".$row['ato']."'>
+				<button type=submit name = 'AvailUpdate' class='btn btn-warning btn-xs'>EDIT</button>
 			</form>";
 		echo "</div></div>";
 	}
@@ -86,12 +85,11 @@ function getAvail($conn){
 	}
 
 	function update($conn){
-		if (isset($_POST['AvailSubmit'])) {
+		if (isset($_POST['AvailUpdate'])) {
 		$aid = $_POST['aid'];
 		$ptype = $_POST['ptype'];
 		$afrom = $_POST['afrom'];
 		$ato = $_POST['ato'];
-
 		$sql = "UPDATE availability SET ptype='$ptype' where aid ='$aid'";
 		$result = pg_query($conn, $sql);
 		$sql2 = "UPDATE availability SET afrom='$afrom' where aid ='$aid'";
@@ -99,6 +97,8 @@ function getAvail($conn){
 		$sql3 = "UPDATE availability SET ato='$ato' where aid ='$aid'";
 		$result = pg_query($conn, $sql3);
 		header("Location: putAvail.php");
+		}
 	}
-	}
+
+	
 ?>
