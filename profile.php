@@ -141,9 +141,7 @@
         </form>
   </div>";
   while ($row = pg_fetch_assoc($result3)) {
-        
-
-        echo"
+      echo"
       <div>
       <form class='form-signin' action='profile.php' method='POST'>
         <label>Pet ID:</label>
@@ -157,10 +155,8 @@
         <label>Ending Time:</label>
         <input type='text' name='end' class='form-control' value = '$row[ato]' required>
         <label>Points Cost:</label>
-        <input type='text' name='costs' class='form-control' value = '$row[points]' required>
-        
+        <input type='text' name='costs' class='form-control' value = '$row[points]' required>       
       </form>
-
       </div>";
     
     }
@@ -168,6 +164,7 @@
 
   ?>
 
-
-  </body>
-  </html>
+<html>
+<body background="dogs.jpg">
+</body>
+</html>
