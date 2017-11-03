@@ -8,21 +8,31 @@ CREATE TABLE pets (
 	pid VARCHAR (64) PRIMARY KEY,
 	pname VARCHAR (64) NOT NULL,
 	ptype VARCHAR (64) NOT NULL,
-	oid VARCHAR (64) REFERENCES users(uid) NOT NULL
+	oid VARCHAR (64) REFERENCES users(uid)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE
 );
 
 CREATE TABLE availability (
-	cid VARCHAR(64) REFERENCES users(uid),
+	cid VARCHAR(64) REFERENCES users(uid)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE,
 	ptype VARCHAR(64) NOT NULL,
 	afrom DATE NOT NULL,
 	ato DATE NOT NULL,
-	aid VARCHAR(64) PRIMARY KEY
+	aid SERIAL PRIMARY KEY
 );
 
 CREATE TABLE bid (
-  bid VARCHAR(64) REFERENCES users(uid),
-  aid VARCHAR(64) REFERENCES availability(aid),
-  pid VARCHAR(64) REFERENCES pets(pid),
+  bid VARCHAR(64) REFERENCES users(uid)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
+  aid INT REFERENCES availability(aid)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
+  pid VARCHAR(64) REFERENCES pets(pid)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
   status VARCHAR(64) CHECK (status IN ('successful', 'failed', 'pending')),
   points INTEGER NOT NULL,
   PRIMARY KEY (bid, aid, pid)

@@ -19,6 +19,3 @@ if (isset($_SESSION['id'])) {
 echo "<br><br>";
 get($conn);
 ?>
-
-</body>
-</html>

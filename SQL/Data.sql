@@ -1,13 +1,13 @@
-INSERT INTO users VALUES('mx98','sdfwfdxdfwsvxc', 400);
-INSERT INTO users VALUES('cyuan79', 'sfwjfnvdsvneiv', 500);
-INSERT INTO users VALUES('Wanqing1034', 'fjrjvidgdxvn', 500);
-INSERT INTO users VALUES('Xiaoman856','xkismimvo', 500);
-INSERT INTO users VALUES('loveCandy123', 'vdcnvrjv', 500);
-INSERT INTO users VALUES('lodaed34', 'fsjfnisvjxcnve', 500);
-INSERT INTO users VALUES('happy293', 'cfsoxnsvcxv', 500);
-INSERT INTO users VALUES('Kelvin98', 'sfsxvfxv', 500);
-INSERT INTO users VALUES('Chunhui12', 'sfjsiovrtfg', 500);
-INSERT INTO users VALUES('Celiahuuuu', 'vxnjfkvvrk', 500);
+INSERT INTO users VALUES('mx98','mx98', 400);
+INSERT INTO users VALUES('cyuan79', 'cyuan79', 500);
+INSERT INTO users VALUES('Wanqing1034', 'Wanqing1034', 500);
+INSERT INTO users VALUES('Xiaoman856','Xiaoman856', 500);
+INSERT INTO users VALUES('loveCandy123', 'loveCandy123', 500);
+INSERT INTO users VALUES('lodaed34', 'lodaed34', 500);
+INSERT INTO users VALUES('happy293', 'happy293', 500);
+INSERT INTO users VALUES('Kelvin98', 'Kelvin98', 500);
+INSERT INTO users VALUES('Chunhui12', 'Chunhui12', 500);
+INSERT INTO users VALUES('Celiahuuuu', 'Celiahuuuu', 500);
  
 INSERT INTO pets VALUES('19583049', 'maggie', 'Dog', 'mx98');
 INSERT INTO pets VALUES('23939204', 'max', 'Cat', 'cyuan79');
