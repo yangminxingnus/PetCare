@@ -24,10 +24,8 @@ function getLogin($conn){
 		} else {	
 			header("Location: index.php");
 		}
-	}
-	
-	
-	
+	}	
+
 }
 
 //Log out the user

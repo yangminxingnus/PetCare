@@ -12,7 +12,7 @@ textarea {
 	background-color: #fff;
 	resize: none;
   display: block;
-  margin:0 auto;
+  margin:0 auto;\
 }
 ::selection, #dex pre ::selection, #nav input::selection{
   text-shadow:none;
