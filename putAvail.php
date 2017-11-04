@@ -9,7 +9,7 @@
 <?php
 
 echo"
-<div>
+<div Id = head>
       <form class='form-signin' action='".post_avail($conn)."' method='POST'>
         <h2 class='form-signin-heading'>Be a carer! Post your availability here!</h2>
         <input type='text' name='ptype' class='form-control' placeholder='Pet type' required autofocus><br>
@@ -28,6 +28,7 @@ getAvail($conn);
 // Submit an availability
 function post_avail($conn) {
 	if (isset($_POST['postAvailSubmit'])){
+		
 		$cid = $_SESSION['uid'];
 		$ptype = $_POST['ptype'];
 		$afrom = $_POST['afrom'];
@@ -40,7 +41,7 @@ function post_avail($conn) {
 			</div>";
 		} else {
 			echo "<div class='alert alert-danger alert-dismissible' role='alert'>
-			  Post failed. Please try again.
+			  Post failed. Please try again. $sql
 			</div>";
 		}
 		
