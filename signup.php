@@ -5,7 +5,10 @@
 	session_start();
   include 'header.php';
 ?>
-
+<html>
+<body background="dogwquote.jpg">
+</body>
+</html>
 <?php
 echo"
 <div>
