@@ -5,7 +5,10 @@
 	session_start();
     include 'header.php';
 ?>
-
+<html>
+<body background="dogwquote.jpg">
+</body>
+</html>
 <?php
 if (isset($_SESSION['id'])) {
 	echo "<div><br><h2>"."Hello ";

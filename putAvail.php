@@ -102,3 +102,8 @@ function getAvail($conn){
 
 	
 ?>
+
+<html>
+<body background="doginbag.jpg">
+</body>
+</html>

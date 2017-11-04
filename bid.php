@@ -9,5 +9,7 @@ echo "This is the bid page!";
 get($conn);
 ?>
 
+<html>
+<body background="dogandcat.jpg">
 </body>
 </html>

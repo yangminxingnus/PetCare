@@ -139,6 +139,9 @@ elseif (isset($bids)) {
 	}
 }
 ?>
-
+<html>
+<body background="dog.jpg">
+</body>
+</html>
   
 
