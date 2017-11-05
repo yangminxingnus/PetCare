@@ -22,10 +22,11 @@ echo"
 echo "<div>
   <h2 class='form-signin-heading'>Bidding on going </h2>
   </div>";
-getAvail($conn);
+getOnGoingAvail($conn);
 echo "<div>
   <h2 class='form-signin-heading'>My caring history </h2>
   </div>";
+  getAvailHistory($conn);
 ?>
 
 <?php
@@ -50,11 +51,20 @@ function post_avail($conn) {
 		
 	}
 }
-function getAvail($conn){
+
+// Get bidding on going availabilities, which are the availabilities that bidder is not set
+function getOnGoingAvail($conn){
 	$cid = $_SESSION['uid'];
 	$sql = "SELECT * FROM availability WHERE cid = '$cid'";
 	$result = pg_query($conn, $sql);
 	while ($row = pg_fetch_assoc($result)) {
+		// Check whether this availability is closed
+		$aid = $row['aid'];
+		$sql2 = "SELECT * FROM bid WHERE aid = '$aid' AND status = 'successful'";
+		$result2 = pg_query($conn, $sql2);
+
+		// There is no bid successful for this availability, this availability is bidding on going
+		if (pg_num_rows($result2) == 0) {
 				echo "<div class='panel panel-warning'><div class='panel panel-heading'><h3>";
 				echo $row['ptype'];
 				echo "</div><div class='panel panel-body'>";
@@ -72,9 +82,36 @@ function getAvail($conn){
 			</form>";
 			showBidders($conn, $row['aid']);
 		echo "</div></div>";
+	}
 		
 	}
 	
+}
+
+// Get availability history, which are the availabilities that bidder is already set
+function getAvailHistory($conn){
+	$cid = $_SESSION['uid'];
+	$sql = "SELECT a.aid, a.ato, a.afrom, a.ptype FROM availability a, bid b WHERE a.cid = '$cid' AND a.aid = b.aid AND b.status = 'successful'";
+	$result = pg_query($conn, $sql);
+	while ($row = pg_fetch_assoc($result)) {
+				echo "<div class='panel panel-warning'><div class='panel panel-heading'><h3>";
+				echo $row['ptype'];
+				echo "</div><div class='panel panel-body'>";
+				echo "From    ".$row['afrom']."</h3>"."  to  ".$row['ato'];
+			showSuccessfulBidders($conn, $row['aid']);
+		echo "</div></div>";
+	}
+	
+}
+
+
+// Show the bidders in an closed availability
+function showSuccessfulBidders($conn, $aid) {
+	$sql = "SELECT * FROM bid WHERE aid = '$aid'";
+	$result = pg_query($conn, $sql);
+	while ($row = pg_fetch_assoc($result)) {
+		echo "<br>Bidder: ".$row['bid'].", Bid points: ".$row['points'].", Status: ".$row['status'];
+	}
 }
 
 // Show the bidders bidding for an availability
@@ -110,13 +147,13 @@ function chooseBidder($conn) {
 		$result = pg_query($conn, $sql1);
 
 		// Get points left
-		$sql3 = "SELECT * FROM user SET where uid ='$bid'";
+		$sql3 = "SELECT * FROM users SET where uid ='$bid'";
 		$result = pg_query($conn, $sql3);
 		$row = pg_fetch_assoc($result);
 		$pointsLeft = $row['points'] - $points;
 
 		// Deduct points of bidder
-		$sql4 = "UPDATE user SET points = '$pointsLeft' where aid ='$aid'";
+		$sql4 = "UPDATE users SET points = '$pointsLeft' where uid ='$bid'";
 		$result = pg_query($conn, $sql4);
 		
 		header("Location: putAvail.php");
