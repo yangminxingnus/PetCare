@@ -19,7 +19,10 @@
 			<li><a href="index.php">HOME</a></li>
 			<?php
 			if($_SESSION['uid'] == 'admin'){?>
-				<li><a href="admin.php">MANAGE</a></li>
+				<li><a href="viewPets.php">PETS</a></li>
+				<li><a href="viewUsers.php">USERS</a></li>
+				<li><a href="viewAvai.php">AVAILABILITIES</a></li>
+				<li><a href="viewBids.php">BIDS</a></li>
 			<?php
 				echo "<form action='".logout()."' method='POST'>
 				<button type='submit' name='logoutSubmit' class='btn btn-warning btn-xs'>LOG OUT</button>

@@ -40,6 +40,7 @@ if (isset($pets)) {
 			$result=pg_query($conn, "UPDATE pets SET oid='$_POST[owner_id_updated]'pname='$_POST[pet_name_updated]',ptype='$_POST[pet_type_updated]'WHERE pid='$row[pid]'");
         	if (!$result){ echo "Update failed!!";}
         	else{echo "Update successful!";}
+        	header("Location: admin.php");
     	}
 		elseif(isset($_POST['delete'])){
 			$result1=pg_query($conn, "DELETE FROM pets WHERE pid='$row[pid]'");
@@ -48,6 +49,7 @@ if (isset($pets)) {
        	else{
        		if(!$result){ echo "Delete failed!";}
        		else {echo "Delete successful!";}
+       		header("Location: admin.php");
 		}
 	}
 }
@@ -140,7 +142,7 @@ elseif (isset($bids)) {
 }
 ?>
 <html>
-<body background="dog.jpg">
+<body background="images/dog.jpg">
 </body>
 </html>
   
