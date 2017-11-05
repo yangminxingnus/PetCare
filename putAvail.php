@@ -71,6 +71,7 @@ function getAvail($conn){
 	
 }
 
+// Show the bidders bidding for an availability
 function showBidders($conn, $aid) {
 	$sql = "SELECT * FROM bid WHERE aid = '$aid'";
 	$result = pg_query($conn, $sql);
@@ -78,13 +79,43 @@ function showBidders($conn, $aid) {
 		echo "<div><br>Bidder: ".$row['bid'].", Bid points: ".$row['points'];
 		echo "<form method='POST' action='".chooseBidder($conn)."'>
 				<input type='hidden' name='bid' value='".$row['bid']."'>
+				<input type='hidden' name='aid' value='".$row['aid']."'>
+				<input type='hidden' name='pid' value='".$row['pid']."'>
+				<input type='hidden' name='points' value='".$row['points']."'>
 				<button type=submit name = 'ChooseBidderButton' class='btn btn-warning btn-xs'>Choose this bidder</button>
 			</form></div>";
 	}
 }
 
+// The carer choose a bidder for one availability
 function chooseBidder($conn) {
+	if (isset($_POST['ChooseBidderButton'])) {
+		$bid = $_POST['bid'];
+		$aid = $_POST['aid'];
+		$pid = $_POST['pid'];
+		$points = $_POST['points'];
 
+		// Make other bids fail
+		$sql2 = "UPDATE bid SET status = 'failed' where aid ='$aid'";
+		$result = pg_query($conn, $sql2);
+
+		// Make the bid successful
+		$sql1 = "UPDATE bid SET status = 'successful' where bid ='$bid' AND aid ='$aid' AND pid ='$pid'";
+		$result = pg_query($conn, $sql1);
+
+		// Get points left
+		$sql3 = "SELECT * FROM user SET where uid ='$bid'";
+		$result = pg_query($conn, $sql3);
+		$row = pg_fetch_assoc($result);
+		$pointsLeft = $row['points'] - $points;
+
+		// Deduct points of bidder
+		$sql4 = "UPDATE user SET points = '$pointsLeft' where aid ='$aid'";
+		$result = pg_query($conn, $sql4);
+		
+		header("Location: putAvail.php");
+		
+		}
 }
 	function delete($conn){
 		if (isset($_POST['AvailDelete'])) {
