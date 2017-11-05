@@ -19,7 +19,13 @@ echo"
         <button class='btn btn-lg btn-warning btn-block' type='submit' name='postAvailSubmit'>SUBMIT</button>
       </form>
 </div>"; 
+echo "<div>
+  <h2 class='form-signin-heading'>Bidding on going </h2>
+  </div>";
 getAvail($conn);
+echo "<div>
+  <h2 class='form-signin-heading'>My caring history </h2>
+  </div>";
 ?>
 
 <?php
@@ -76,7 +82,7 @@ function showBidders($conn, $aid) {
 	$sql = "SELECT * FROM bid WHERE aid = '$aid'";
 	$result = pg_query($conn, $sql);
 	while ($row = pg_fetch_assoc($result)) {
-		echo "<div><br>Bidder: ".$row['bid'].", Bid points: ".$row['points'];
+		echo "<div><br>Bidder: ".$row['bid'].", Bid points: ".$row['points'].", Status: ".$row['status'];
 		echo "<form method='POST' action='".chooseBidder($conn)."'>
 				<input type='hidden' name='bid' value='".$row['bid']."'>
 				<input type='hidden' name='aid' value='".$row['aid']."'>
@@ -148,6 +154,6 @@ function chooseBidder($conn) {
 ?>
 
 <html>
-<body background="images/doginbag.jpg">
+<body background="images/dogflower.jpg">
 </body>
 </html>
