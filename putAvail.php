@@ -7,7 +7,6 @@
 ?>
 
 <?php
-
 echo"
 <div>
       <form class='form-signin' action='".post_avail($conn)."' method='POST'>
@@ -20,7 +19,6 @@ echo"
         <button class='btn btn-lg btn-warning btn-block' type='submit' name='postAvailSubmit'>SUBMIT</button>
       </form>
 </div>"; 
-
 getAvail($conn);
 ?>
 
@@ -46,7 +44,6 @@ function post_avail($conn) {
 		
 	}
 }
-
 function getAvail($conn){
 	$cid = $_SESSION['uid'];
 	$sql = "SELECT * FROM availability WHERE cid = '$cid'";
@@ -71,11 +68,13 @@ function getAvail($conn){
 	}
 	
 }
-
 	function delete($conn){
 		if (isset($_POST['AvailDelete'])) {
 		$aid = $_POST['aid'];
-		
+
+		$sql1 = "DELETE FROM bid WHERE aid ='$aid'";
+		$result = pg_query($conn, $sql1);
+
 		$sql = "DELETE FROM availability WHERE aid ='$aid'";
 		$result = pg_query($conn, $sql);
 		
@@ -83,22 +82,23 @@ function getAvail($conn){
 		
 		}
 	}
-
 	function update($conn){
 		if (isset($_POST['AvailUpdate'])) {
 		$aid = $_POST['aid'];
 		$ptype = $_POST['ptype'];
 		$afrom = $_POST['afrom'];
 		$ato = $_POST['ato'];
-		$sql = "UPDATE availability SET ptype='$ptype' where aid ='$aid'";
+		$sql = "UPDATE availability SET ptype='$ptype', afrom='$afrom', ato='$ato' where aid ='$aid'";
 		$result = pg_query($conn, $sql);
-		$sql2 = "UPDATE availability SET afrom='$afrom' where aid ='$aid'";
+		$sql2 = "UPDATE bid SET ptype='$ptype', afrom='$afrom', ato='$ato' where aid ='$aid'";
 		$result = pg_query($conn, $sql2);
-		$sql3 = "UPDATE availability SET ato='$ato' where aid ='$aid'";
-		$result = pg_query($conn, $sql3);
 		header("Location: putAvail.php");
 		}
 	}
-
 	
 ?>
+
+<html>
+<body background="images/doginbag.jpg">
+</body>
+</html>

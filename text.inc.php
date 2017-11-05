@@ -24,8 +24,10 @@ function getLogin($conn){
 		} else {	
 			header("Location: index.php");
 		}
-	}	
-
+	}
+	
+	
+	
 }
 
 //Log out the user
@@ -60,5 +62,36 @@ function sign_up($conn){
 		
 	}
 }
+
+
+//get the infomation of the blogs
+function get($conn){
+	$sql = "SELECT * FROM texts";
+	$result = mysqli_query($conn, $sql);
+	while ($row = mysqli_fetch_assoc($result)) {
+		echo "<div class='panel'><div class='panel panel-heading'><h3>";
+		echo $row['uid']."</h3>"."   ".$row['date'];
+		echo "</div><div class='panel panel-body'>";
+		echo $row['message'];
+		if(isset($_SESSION['uid'])){
+			if($_SESSION['uid']==$row['uid']){
+				echo "<form class='delete-form' method='POST' action='".delete($conn)."'>
+				<input type='hidden' name='id' value='".$row['id']."'>
+				<button type=submit name = 'TextDelete' class='btn btn-warning btn-xs'>DELETE</button>
+			</form>
+			<form class='edit-form' method='POST' action='editText.php'>
+				<input type='hidden' name='id' value='".$row['id']."'>
+				<input type='hidden' name='uid' value='".$row['uid']."'>
+				<input type='hidden' name='date' value='".$row['date']."'>
+				<input type='hidden' name='message' value='".$row['message']."'>
+				<button class='btn btn-warning btn-xs'>EDIT</button>
+			</form>";
+			} 
+		}
+		echo "</div></div>";
+	}
+	
+}
+
 
 ?>

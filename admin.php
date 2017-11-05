@@ -21,40 +21,38 @@ $avai=$_POST['availabilities'];
 $bids=$_POST['bids'];
 if (isset($pets)) {
 	$result=pg_query($conn, "SELECT * FROM pets");
-	while($row=pg_fetch_assoc($result)){
-		echo "<div>
-      <form class='form-signin' action='admin.php' method='POST'>
-
-        <label>Pet ID:</label><input type='text' name='pet_id_updated' class='form-control' 
-        value = '$row[pid]' required autofocus>
-        <label>Pet Name:</label><input type='text' name='pet_name_updated' class='form-control' 
-        value = '$row[pname]' required>
-        <label>Pet Type:</label><input type='text' name='pet_type_updated' class='form-control' 
-        value = '$row[ptype]' required>
-        <label>Owner ID:</label><input type='text' name='owner_id_updated' class='form-control' 
-        value = '$row[oid]' required>
-        <button class='btn btn-lg btn-warning btn-block' type='submit' name='update_pet'>Update this pet
-        </button>
-        <button class='btn btn-lg btn-warning btn-block' type='submit' name='delete_pet'>Delete this pet
-        </button>
-      </form>
-
-      </div>";
-	}
-	if(isset($_POST['update_pet'])){
-		$result=pg_query($conn, "UPDATE pets SET oid='$_POST[owner_id_updated]',pname='$_POST[pet_name_updated]',ptype='$_POST[pet_type_updated]' WHERE pid='$_POST[pet_id_updated]'");
-    	    if (!$result){ echo "Update failed!!";}
-        	else {echo "Update successful!";}
-    }
-	if(isset($_POST['delete_pet'])){
-		$result1=pg_query($conn, "DELETE FROM pets WHERE pid='$_POST[pet_id_updated]'");
-		$result=pg_query($conn, "DELETE FROM pets WHERE oid='$_POST[owner_id_updated]'");
+while($row=pg_fetch_assoc($result)){
+		echo "<ul><form name='diplay' action='admin.php' method='POST'>
+		<li>Pet ID: $row[pid]</li>
+		<li>Pet Name:</li>
+		<li><input type='text' name='pet_name_updated' value='$row[pname]'/></li>
+		<li>Pet Type</li>
+		<li><input type='text' name='pet_type_updated' value='$row[ptype]'/></li>
+		<li>Owner ID</li>
+		<li><input type='text' name='owner_id_updated' value='$row[oid]'/></li>
+		</form>
+		</ul>";
+		echo "<div class='panel panel-body'>
+		<button class='btn btn-warning btn-block' type='submit' name='update'>update</button>
+		<button class='btn btn-warning btn-block' type='submit' name='delete'>delete</button>
+		</div>";
+		if(isset($_POST['update'])){
+			$result=pg_query($conn, "UPDATE pets SET oid='$_POST[owner_id_updated]'pname='$_POST[pet_name_updated]',ptype='$_POST[pet_type_updated]'WHERE pid='$row[pid]'");
+        	if (!$result){ echo "Update failed!!";}
+        	else{echo "Update successful!";}
+        	header("Location: admin.php");
+    	}
+		elseif(isset($_POST['delete'])){
+			$result1=pg_query($conn, "DELETE FROM pets WHERE pid='$row[pid]'");
+			$result=pg_query($conn, "DELETE FROM pets WHERE oid='$_POST[owner_id_updated]'");
 		if (!$result1){ echo "Delete failed!!";}
-   		else{
+       	else{
        		if(!$result){ echo "Delete failed!";}
-   			else {echo "Delete successful!";}
+       		else {echo "Delete successful!";}
+       		header("Location: admin.php");
 		}
 	}
+}
 }
 elseif(isset($users)){
 	$result=pg_query($conn, "SELECT * FROM users");
@@ -147,6 +145,9 @@ elseif (isset($bids)) {
 }
 
 ?>
-
+<html>
+<body background="images/dog.jpg">
+</body>
+</html>
   
 
