@@ -158,7 +158,7 @@
         echo "<form class='delete-form' action='profile.php' method='POST'>
          <input type='hidden' name='pId' placeholder='availability' value='".$row['pid']."' required >
          <input type='hidden' name='aId' placeholder='availability' value='".$row['aid']."' required >
-         <input type='number' min='0' name='newPoints' placeholder='update points' value = '0' required >
+         <input type='number' min='0' name='newPoints' placeholder='update points' value = ".$row['points']." required >
          <button class='btn btn-warning btn-xs' type='submit' name='bidUpdate'>Update bid</button>
          <button class='btn btn-warning btn-xs' type='submit' name='bidDelete'>Quit this bid</button>
          </form>";
