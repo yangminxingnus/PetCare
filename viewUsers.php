@@ -7,24 +7,26 @@
 <?php
 	$result=pg_query($conn, "SELECT * FROM users");
 	while($row=pg_fetch_assoc($result)){
-		echo "<ul><form name='diplay' action='viewUsers.php' method='POST'>
-		<li>User ID: $row[uid]</li>
-		<li>User Password: $row[password]</li>
-		<li>User Bidding points</li>
-		<li><input type='text' name='user_pts_updated' value='$row[points]'/></li>
+		echo "
+		<div>
+		<form class='form-signin' action='viewUsers.php' method='POST'>
+		<label>User ID: $row[uid]</label><br>
+		<input type='hidden' name='uid' class='form-control' placeholder='availability' value='$row[uid]' required >
+		<label>User Password: $row[password]</label><br>
+		<label>User Bidding points:</label><input type='text' name='user_pts_updated' class='form-control' value='$row[points]'/><br>
+		<button class='btn btn-lg btn-warning btn-block' type='submit' name='update_user'>update</button>
+		<button class='btn btn-lg btn-warning btn-block' type='submit' name='delete_user'>delete</button>
 		</form>
-		</ul>";
-		echo "<div class='panel panel-body'>
-		<button class='btn btn-warning btn-block' type='submit' name='update_user'>update</button>
-		<button class='btn btn-warning btn-block' type='submit' name='delete_user'>delete</button>
 		</div>";
 	}
+
 	if(isset($_POST['update_user'])){
-		$result=
-			pg_query($conn, "UPDATE users SET points='$_POST[user_pts_updated]' WHERE uid='$row[uid]'");
+		$sql = "UPDATE users SET points='$_POST[user_pts_updated]' WHERE uid='$_POST[uid]'";
+		$result = pg_query($conn, $sql);
 		if (!$result){ echo "Update failed!!";}
-        else{echo "Update successful!";}
-		}
+        else{echo "Update successful! $sql" ;}	
+	}
+
 	if(isset($_POST['delete_user'])){
 		$result1=pg_query($conn, "DELETE FROM bid WHERE bid='$row[uid]'");
 		$result2=pg_query($conn, "DELETE FROM availability WHERE cid='$row[uid]'");
@@ -39,6 +41,11 @@
 	}
 
 ?>
+
+<html>
+<body background="images/pet.jpg"
+</body>
+</html> 
 
   
 

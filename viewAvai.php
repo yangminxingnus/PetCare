@@ -7,26 +7,23 @@
 <?php
 	$result=pg_query($conn, "SELECT * FROM availability");
 	while($row=pg_fetch_assoc($result)){
-		echo "<ul><form name='diplay' action='viewAvai.php' method='POST'>
-		<li>Availability ID: $row[aid]</li>
-		<li>Carer ID</li>
-		<li><input type='text' name='carer_id_updated' value='$row[cid]'/></li>
-		<li>Prefered Pet Type</li>
-		<li><input type='text' name='pet_type_updated' value='$row[ptype]'/></li>
-		<li>From</li>
-		<li><input type='text' name='from_updated' value='$row[afrom]'/></li>
-		<li>To</li>
-		<li><input type='text' name='to_updated' value='$row[ato]'/></li>
+        echo "
+		<div>
+		<form class='form-signin' action='viewAvai.php' method='POST'>
+		<label>Availability ID: $row[aid]</label>
+		<label>Carer ID: </label><input type='text' name='carer_id_updated' class='form-control' value='$row[cid]'/>
+		<label>Prefered Pet Type:</label><input type='text' name='pet_type_updated' class='form-control' value='$row[ptype]'/>
+		<label>From: </label><input type='text' name='from_updated' class='form-control' value='$row[afrom]'/>
+		<label>To:</label><input type='text' name='to_updated' class='form-control' value='$row[ato]'/><br>
+		<input type='hidden' name='aid'placeholder='availability' class='form-control' value='$row[aid]' required >
+		<button class='btn btn-lg btn-warning btn-block' type='submit' name='update_avai'>update</button>
+		<button class='btn btn-lg btn-warning btn-block' type='submit' name='delete_avai'>delete</button>
 		</form>
-		</ul>";
-		echo "<div class='panel panel-body'>
-		<button class='btn btn-warning btn-block' type='submit' name='update_avai'>update</button>
-		<button class='btn btn-warning btn-block' type='submit' name='delete_avai'>delete</button>
 		</div>";
 		
 	}
 	if(isset($_POST['update_avai'])){
-		$result=pg_query($conn, "UPDATE availability SET cid='$_POST[carer_id_updated]', ptype='$_POST[pet_type_updated]',afrom='$_POST[from_updated]', ato='$_POST[to_updated]' WHERE aid='$row[aid]'");
+		$result=pg_query($conn, "UPDATE availability SET cid='$_POST[carer_id_updated]', ptype='$_POST[pet_type_updated]',afrom='$_POST[from_updated]', ato='$_POST[to_updated]' WHERE aid='$_POST[aid]'");
 		if(!$result) {echo "Update failed!";}
 		else {echo "Update successful!";}
 	}
@@ -38,5 +35,7 @@
 	}
 ?>
 
-  
-
+<html>
+<body background="images/doginbag.jpg"
+</body>
+</html> 

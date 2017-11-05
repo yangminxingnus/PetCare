@@ -13,12 +13,7 @@ function getLogin($conn){
 				$_SESSION['id'] = $row['uid'];
 				$_SESSION['uid'] = $_POST['uid'];
 
-				if ($_SESSION['id'] == "admin") {
-					header("Location: admin.php?loginsuccess");
-				} else {
-					header("Location: index.php?loginsuccess");
-				}
-				
+				header("Location: index.php?loginsuccess");
 				exit();
 			}
 		} else {	
