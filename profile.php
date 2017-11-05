@@ -10,6 +10,7 @@
   <h2 class='form-signin-heading'>This is the profile page for $uid!</h2>
   </div>";
 
+
   $result = pg_query($conn, "SELECT * FROM users WHERE uid = '$uid'");
   $row = pg_fetch_assoc($result);
 
@@ -86,6 +87,9 @@
             echo "<div class='alert alert-success alert-dismissible' role='alert'>
         Update pet information successfully!
       </div>";
+
+      echo "<meta http-equiv='refresh' content = '3'>";
+      
         }
       
     }
@@ -100,6 +104,8 @@
             echo "<div class='alert alert-success alert-dismissible' role='alert'>
         Delete pet successfully!
       </div>";
+     
+      echo "<meta http-equiv='refresh' content = '3'>";
         }
   }
 
@@ -110,16 +116,17 @@
         <input type='text' name='pid' class='form-control' placeholder='Pet ID' required autofocus>
         <input type='text' name='pname' class='form-control' placeholder='Pet Name' required>
         <input type='text' name='ptype' class='form-control' placeholder='Pet Type' required>
-        <button class='btn btn-lg btn-warning btn-block' type='submit' name='addPetSubmit'>Add a Pet</button>
+        <button class='btn btn-lg btn-warning btn-block' type='submit' name='addPetSubmit'>Add a Pet
+        </button>
       </form>
 
   </div>";
 
 
   if (isset($_POST['addPetSubmit'])) {
-  $result2 = pg_query($conn, "INSERT INTO pets VALUES ('$_POST[pid]', 
+  $result1 = pg_query($conn, "INSERT INTO pets VALUES ('$_POST[pid]', 
     '$_POST[pname]', '$_POST[ptype]', '$uid')");
-  if (!$result2) {
+  if (!$result1) {
     echo "<div class='alert alert-danger alert-dismissible' role='alert'>
         Add failed, the pet ID has already existed!!
       </div>";
@@ -128,10 +135,12 @@
             echo "<div class='alert alert-success alert-dismissible' role='alert'>
         Add pet successfully!
       </div>";
+      
+      echo "<meta http-equiv='refresh' content = '3'>";
     }
   }
 
-  $result3 = pg_query($conn, "SELECT p.pid, p.pname, p.ptype, a.afrom, a.ato, b.points 
+  $result = pg_query($conn, "SELECT p.pid, p.pname, p.ptype, a.afrom, a.ato, b.points 
   FROM availability a, bid b, pets p 
   WHERE a.aid = b.aid AND b.pid = p.pid
   AND b.bid = '$uid' AND b.status = 'successful' ");
@@ -140,7 +149,7 @@
         <h2 class='form-signin-heading'>All slots I bid successfully</h2>
         </form>
   </div>";
-  while ($row = pg_fetch_assoc($result3)) {
+  while ($row = pg_fetch_assoc($result)) {
         
 
         echo"
