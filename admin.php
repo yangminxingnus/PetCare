@@ -21,7 +21,7 @@ $avai=$_POST['availabilities'];
 $bids=$_POST['bids'];
 if (isset($pets)) {
 	$result=pg_query($conn, "SELECT * FROM pets");
-	while($row=pg_fetch_assoc($result)){
+while($row=pg_fetch_assoc($result)){
 		echo "<ul><form name='diplay' action='admin.php' method='POST'>
 		<li>Pet ID: $row[pid]</li>
 		<li>Pet Name:</li>
@@ -65,25 +65,26 @@ elseif(isset($users)){
 		</form>
 		</ul>";
 		echo "<div class='panel panel-body'>
-		<button class='btn btn-warning btn-block' type='submit' name='update'>update</button>
-		<button class='btn btn-warning btn-block' type='submit' name='delete'>delete</button>
+		<button class='btn btn-warning btn-block' type='submit' name='update_user'>update</button>
+		<button class='btn btn-warning btn-block' type='submit' name='delete_user'>delete</button>
 		</div>";
-		if(isset($_POST['update'])){
-			$result=pg_query($conn, "UPDATE users SET points='$_POST[user_pts_updated]' WHERE uid='$row[uid]'");
-			if (!$result){ echo "Update failed!!";}
-        	else{echo "Update successful!";}
+	}
+	if(isset($_POST['update_user'])){
+		$result=
+			pg_query($conn, "UPDATE users SET points='$_POST[user_pts_updated]' WHERE uid='$row[uid]'");
+		if (!$result){ echo "Update failed!!";}
+        else{echo "Update successful!";}
 		}
-		elseif(isset($_POST['delete'])){
-			$result1=pg_query($conn, "DELETE FROM bid WHERE bid='$row[uid]'");
-			$result2=pg_query($conn, "DELETE FROM availability WHERE cid='$row[uid]'");
-			$result3=pg_query($conn, "DELETE FROM pets WHERE oid=$row[uid]");
-			$result4=pg_query($conn, "DELETE FROM users WHERE uid=$row[uid]");
-			if($result1&&$result2&&$result3&&$result){
-				echo "Delete successful!";
-			}
-			else{
-				echo "Delete failed!";
-			}
+	if(isset($_POST['delete_user'])){
+		$result1=pg_query($conn, "DELETE FROM bid WHERE bid='$row[uid]'");
+		$result2=pg_query($conn, "DELETE FROM availability WHERE cid='$row[uid]'");
+		$result3=pg_query($conn, "DELETE FROM pets WHERE oid=$row[uid]");
+		$result4=pg_query($conn, "DELETE FROM users WHERE uid=$row[uid]");
+		if($result1&&$result2&&$result3&&$result){
+			echo "Delete successful!";
+		}
+		else{
+			echo "Delete failed!";
 		}
 	}
 }
@@ -103,20 +104,21 @@ elseif(isset($avai)){
 		</form>
 		</ul>";
 		echo "<div class='panel panel-body'>
-		<button class='btn btn-warning btn-block' type='submit' name='update'>update</button>
-		<button class='btn btn-warning btn-block' type='submit' name='delete'>delete</button>
+		<button class='btn btn-warning btn-block' type='submit' name='update_avai'>update</button>
+		<button class='btn btn-warning btn-block' type='submit' name='delete_avai'>delete</button>
 		</div>";
-		if(isset($_POST['update'])){
-			$result=pg_query($conn, "UPDATE availability SET cid='$_POST[carer_id_updated]', ptype='$_POST[pet_type_updated]',afrom='$_POST[from_updated]', ato='$_POST[to_updated]' WHERE aid='$row[aid]'");
-			if(!$result) {echo "Update failed!";}
-			else {echo "Update successful!";}
-		}
-		elseif(isset($_POST['delete'])){
-			$result1=pg_query($conn, "DELETE FROM bid WHERE aid='$row[aid]'");
-			$result2=pg_query($conn, "DELETE FROM availability WHERE aid='$row[aid]'");
-			if($result1&&$result2){echo "Delete successful!";}
-			else{echo "Delete failed!";}
-		}
+		
+	}
+	if(isset($_POST['update_avai'])){
+		$result=pg_query($conn, "UPDATE availability SET cid='$_POST[carer_id_updated]', ptype='$_POST[pet_type_updated]',afrom='$_POST[from_updated]', ato='$_POST[to_updated]' WHERE aid='$row[aid]'");
+		if(!$result) {echo "Update failed!";}
+		else {echo "Update successful!";}
+	}
+	if(isset($_POST['delete_avai'])){
+		$result1=pg_query($conn, "DELETE FROM bid WHERE aid='$row[aid]'");
+		$result2=pg_query($conn, "DELETE FROM availability WHERE aid='$row[aid]'");
+		if($result1&&$result2){echo "Delete successful!";}
+		else{echo "Delete failed!";}
 	}
 }
 elseif (isset($bids)) {
@@ -135,11 +137,13 @@ elseif (isset($bids)) {
 		<li><input type='submit' name='delete' value='delete'/></li>
 		</form>
 		</ul>";
-		if(isset($_POST['delete'])){
-			$result=pg_query($conn, "DELETE FROM bid WHERE bid='$row[bid]' AND aid='$row[aid]' AND pid='$row[pid]'");
-		}
+
+	}
+	if(isset($_POST['delete'])){
+		$result=pg_query($conn, "DELETE FROM bid WHERE bid='$row[bid]' AND aid='$row[aid]' AND pid='$row[pid]'");
 	}
 }
+
 ?>
 <html>
 <body background="images/dog.jpg">
