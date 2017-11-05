@@ -64,9 +64,18 @@ function getAvail($conn){
 				<input type='date' name='ato' value='".$row['ato']."'>
 				<button type=submit name = 'AvailUpdate' class='btn btn-warning btn-xs'>EDIT</button>
 			</form>";
+			showBidders($conn, $row['aid']);
 		echo "</div></div>";
 	}
 	
+}
+
+function showBidders($conn, $aid) {
+	$sql = "SELECT * FROM bid WHERE aid = '$aid'";
+	$result = pg_query($conn, $sql);
+	while ($row = pg_fetch_assoc($result)) {
+		echo "<br>Bidder: ".$row['bid']." Bid points: ".$row['points'];
+	}
 }
 	function delete($conn){
 		if (isset($_POST['AvailDelete'])) {
