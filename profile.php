@@ -130,41 +130,29 @@
       </div>";
     }
   }
-
-  $result3 = pg_query($conn, "SELECT p.pid, p.pname, p.ptype, a.afrom, a.ato, b.points 
-  FROM availability a, bid b, pets p 
-  WHERE a.aid = b.aid AND b.pid = p.pid
-  AND b.bid = '$uid' AND b.status = 'successful' ");
+  $result3 = pg_query($conn, "SELECT * 
+  FROM availability a, bid b
+  WHERE a.aid = b.aid
+  AND b.bid = '$uid'");
   echo "<div>
-        <form class='form-signin' action='profile.php' method='POST'>
-        <h2 class='form-signin-heading'>All slots I bid successfully</h2>
-        </form>
+  <form class='form-signin' action='profile.php' method='POST'>
+  <h2 class='form-signin-heading'>All slots I bid</h2>
+  </form>
   </div>";
   while ($row = pg_fetch_assoc($result3)) {
-      echo"
-      <div>
-      <form class='form-signin' action='profile.php' method='POST'>
-        <label>Pet ID:</label>
-        <input type='text' name='pid' class='form-control' value = '$row[pid]'  required autofocus>
-        <label>Pet Name:</label>
-        <input type='text' name='pname' class='form-control' value = '$row[pname]' required>
-        <label>Pet Type:</label>
-        <input type='text' name='ptype' class='form-control' value = '$row[ptype]' required>
-        <label>Starting Time:</label>
-        <input type='text' name='start' class='form-control' value = '$row[afrom]'  required>
-        <label>Ending Time:</label>
-        <input type='text' name='end' class='form-control' value = '$row[ato]' required>
-        <label>Points Cost:</label>
-        <input type='text' name='costs' class='form-control' value = '$row[points]' required>       
-      </form>
-      </div>";
-    
-    }
+    echo "<div class='panel panel-warning'><div class='panel panel-heading'><h3>";
+        echo "Pet ID: ".$row['pid'];
+        echo "</div><div class='panel panel-body'>";
+        echo "From    ".$row['afrom']."</h3>"."  to  ".$row['ato'];
+        echo "<br>Points: ".$row['points']." ";
+        echo "<br>Status: ".$row['status']." ";
+        echo "</div></div>";
+  }
 
 
-  ?>
+?>
 
 <html>
-<body background="dogs.jpg">
+<body background="images/dogs.jpg">
 </body>
 </html>

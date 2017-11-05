@@ -6,7 +6,7 @@
   include 'header.php';
 ?>
 <html>
-<body background="dogwquote.jpg">
+<body background="images/dogwquote.jpg">
 </body>
 </html>
 <?php
@@ -22,6 +22,3 @@ echo"
 </div>"; 
 
 ?>
-
-</body>
-</html>
