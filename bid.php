@@ -18,6 +18,7 @@ echo "
 <button class='btn btn-warning btn-block' type='submit' name='searchASubmit'>Search</button>
 </form>
 </div>";
+
 getAvail($conn);
 bid($conn);
 ?>
@@ -30,8 +31,11 @@ function search($conn){
       <style type="text/css">
       #head{
        display:none;
-     }</style>
+     }
+   </style>
+
      <?php
+
 
      $pType = $_POST['petType'];
      $sTime = $_POST['sTime'];
@@ -59,8 +63,10 @@ function search($conn){
 
 
 function getAvail($conn){
-    $sql = "SELECT * FROM availability";
+    $sql = "SELECT * FROM availability a WHERE 'pending' = ALL(SELECT status FROM bid b WHERE b.aid = a.aid)";
     $result = pg_query($conn, $sql);
+   
+
     while ($row = pg_fetch_assoc($result)) {
 
       echo "<div class='panel panel-warning'><div class='panel panel-heading'><h3>";
@@ -88,17 +94,21 @@ function bid($conn) {
       // Check whether user have enough points
       $sql1 = "SELECT * FROM users WHERE uid = '$uid'";
       $sql2 = "SELECT * FROM pets WHERE pid = '$petId' AND oid = '$uid'";
+      $sql4 = "SELECT SUM(b.points) FROM users u, bid b WHERE u.uid = b.bid AND u.uid = '$uid' GROUP BY b.bid";
       $result1 = pg_query($conn, $sql1); 
       $result2 = pg_query($conn, $sql2);
+      $result4 = pg_query($conn, $sql4);
       $userRow = pg_fetch_assoc($result1);
+      $userRow1 = pg_fetch_assoc($result4);
       $totalPoints = $userRow[points];
-      $pointsLeft = $totalPoints - $points;
+      $pointsLeft = $totalPoints - $userRow1[sum];
 
       if(pg_num_rows($result2) > 0) {
-          if ($pointsLeft >= 0) {
+          if ($pointsLeft > 0) {
           // User has enough points
           $sql = "INSERT INTO bid VALUES ('$uid', '$aid', '$petId', 'pending', $points)";
           $result3 = pg_query($conn, $sql);
+          
           if (!$result3) {
             echo "<div class='alert alert-danger alert-dismissible' role='alert'>
             Bid failed. $sql
@@ -116,7 +126,7 @@ function bid($conn) {
         }
       } else {
           echo "<div class='alert alert-danger alert-dismissible' role='alert'>
-          Pet Id invalid! $rows
+          Pet Id invalid!
           </div>";
       }
    } 
